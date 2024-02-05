@@ -301,6 +301,12 @@ nav + .container {
   color: #657786;
 }
 
+.messages-like {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 1;
+}
 /* ==================== User cards on follower/following pages */
 
 .user-card {

@@ -4,8 +4,8 @@ from flask import Flask, render_template, request, flash, redirect, session, g, 
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
-from forms import UserAddForm, LoginForm, MessageForm
-from models import db, connect_db, User, Message
+from forms import *
+from models import *
 
 CURR_USER_KEY = "curr_user"
 
@@ -219,7 +219,7 @@ def show_likes(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('users/likes.html', user=user, likes=user.likes)
 
-@app.route('/messages/<int:message_id>/like', methods=['POST'])
+@app.route('/users/add_like/<int:message_id>', methods=['POST'])
 def add_like(message_id):
     """Toggle a liked message for the currently-logged-in user."""
 
@@ -263,6 +263,8 @@ def profile():
             
             db.session.commit()
             return redirect(f"/users/{user.id}")
+        
+        flash("Incorrect Credentials", 'danger')
     
     return render_template('users/edit.html', form=form, user_id=user.id)
 
