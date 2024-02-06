@@ -219,7 +219,7 @@ def show_likes(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('users/likes.html', user=user, likes=user.likes)
 
-@app.route('/users/add_like/<int:message_id>', methods=['POST'])
+@app.route('/messages/<int:message_id>/like', methods=['POST'])
 def add_like(message_id):
     """Toggle a liked message for the currently-logged-in user."""
 
